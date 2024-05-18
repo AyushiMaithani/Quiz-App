@@ -1,0 +1,253 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  background-color: #112b53;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.start-btn button {
+  font-size: 25px;
+  font-weight: 500;
+  padding: 15px 20px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.start-btn button.hide {
+  display: none;
+}
+
+.info-box {
+  background: rgb(235, 228, 228);
+  width: 540px;
+  border-radius: 5px;
+  display: none;
+  transition: all 0.3s ease;
+}
+
+.info-box.show {
+  display: block;
+}
+
+.info-box .info-title {
+  height: 60px;
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-weight: 800;
+  font-size: 22px;
+  padding: 20px;
+}
+
+.info-box .info-list {
+  padding: 15px;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  font-weight: 500;
+}
+.info-box .info-list span {
+  font-weight: 600;
+  color: #003f9d;
+}
+
+.info-box .info-list .info {
+  padding: 8px;
+}
+.info-box .buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px;
+}
+
+.info-box .buttons button {
+  margin-right: 12px;
+  padding: 10px;
+  outline: none;
+  border: 1px solid transparent;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.buttons button.quit {
+  color: #112b53;
+  border-color: #112b53;
+}
+
+.buttons button.quit:hover {
+  background: #112b53;
+  color: white;
+}
+.buttons button.cont {
+  outline: none;
+  border-color: #112b53;
+  background: #112b53;
+}
+.buttons button.cont:hover {
+  background: #0f346ae1;
+}
+
+.quiz-box {
+  background: rgb(235, 228, 228);
+  width: 80%;
+  height: 80%;
+  border-radius: 5px;
+  display: none;
+}
+
+.quiz-box.show {
+  display: block;
+}
+
+.quiz-box header {
+  height: 100px;
+  border-bottom: 1px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-box header .title {
+  font-weight: 800;
+  font-size: 22px;
+  padding: 20px;
+}
+
+.quiz-box header .timer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 145px;
+  height: 50px;
+  border-radius: 5px;
+  padding: 0 12px;
+  background: #2b77e894;
+  margin-right: 30px;
+}
+
+.quiz-box header .timer .time-text {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.quiz-box header .timer .time-sec {
+  background-color: rgba(33, 26, 26, 0.796);
+  padding: 8px;
+  font-size: 18px;
+  border-radius: 5px;
+  color: white;
+}
+
+.quiz-box section .ques {
+  font-size: 35px;
+  font-weight: 600;
+  margin: 30px 0 0 30px;
+}
+
+.quiz-box section .option-list {
+  margin: 30px 0 0 20px;
+}
+
+.quiz-box section .option {
+  background-color: rgba(145, 186, 221, 0.781);
+  margin: 0 0 34px 0;
+  font-size: 22px;
+  display: flex;
+  height: 65px;
+  border: 1px solid #2b77e894;
+  width: 98%;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+section .option-list .option:hover {
+  background: rgb(104, 163, 215);
+}
+
+.option-list .option:last-child {
+  margin-bottom: 0;
+}
+
+.quiz-box section .option span {
+  margin-left: 12px;
+}
+
+.option-list .option .icon {
+  border: 2px solid transparent;
+  border-radius: 50%;
+  margin-right: 12px;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.option-list .option .icon.tick {
+  color: green;
+  border-color: green;
+  background: rgba(158, 213, 158, 0.877);
+}
+
+.option-list .option .icon.cross {
+  color: red;
+  border-color: red;
+  background: rgb(222, 150, 150);
+}
+
+footer {
+  margin-top: 28px;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+footer .total-ques span {
+  display: flex;
+  font-size: 20px;
+  user-select: none;
+}
+
+footer .total-ques span p {
+  font-size: 20px;
+  font-weight: 900;
+  padding: 0 5px;
+}
+
+footer .total-ques span p:first-child {
+  padding-left: 0;
+}
+
+footer .next-btn {
+  height: 40px;
+  padding: 0 13px;
+  font-size: 18px;
+  background: #112b53;
+  color: white;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+footer .next-btn:hover {
+  background: #0f346ae1;
+}

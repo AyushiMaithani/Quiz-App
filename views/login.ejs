@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/register.css" />
+  </head>
+  <body>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    
+</head>
+
+<!-- Change code below this line -->
+
+<body>
+    <div class="form-container">
+        <h1 class="title">Login to Your Account</h1>
+        <p>Enter your username & password to login</p>
+    <form action="/login" method="post">
+        <div class="info-container">
+          <label >Username</label>
+          <input class="input-container" type="text" name="username"  placeholder="Enter your Username here">
+          <label>Password</label>
+          <input class="input-container" type="password" name="password" id="password" placeholder="Enter your password here"> 
+        </div>
+        <div class="btn-controls" >
+            <input  type="submit" value="Login">
+        </div>
+      </form>
+      <div class="link">
+       <p>Don't have account?  <a href="/">Create an account</a></p>
+      </div>
+    </div>
+
+  </body>
+</html>
