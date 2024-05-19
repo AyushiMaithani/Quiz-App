@@ -3,6 +3,7 @@ const infoBox = document.querySelector(".info-box");
 const exitBtn = document.querySelector(".quit");
 const contBtn = document.querySelector(".cont");
 const quizBox = document.querySelector(".quiz-box");
+const resultBox = document.querySelector(".result-box");
 
 startBtn.onclick = () => {
   infoBox.classList.add("show");
@@ -16,5 +17,11 @@ contBtn.onclick = () => {
   infoBox.classList.remove("show");
   quizBox.classList.add("show");
 };
+
+resultBox.onclick=()=>{
+  resultBox.classList.remove("show")
+}
+
+
 
 let queCount = 0;
