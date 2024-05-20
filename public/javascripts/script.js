@@ -6,7 +6,6 @@ const quizBox = document.querySelector(".quiz-box");
 const resultBox = document.querySelector(".result-box");
 let queCount = 0;
 
-
 startBtn.onclick = () => {
   infoBox.classList.add("show");
   startBtn.classList.add("hide");
@@ -28,7 +27,12 @@ resultBox.onclick = () => {
 function showQues(index) {
   const ques = document.querySelector(".ques");
   const option_list = document.querySelector(".option-list");
-  let ques_tag = "<span>" +questions[index].num+'.'+ questions[index].question + "</span>";
+  let ques_tag =
+    "<span>" +
+    questions[index].num +
+    "." +
+    questions[index].question +
+    "</span>";
   let option_tag =
     '<div class="option"><span>' +
     questions[index].options[0] +
@@ -47,5 +51,12 @@ function showQues(index) {
   option_list.innerHTML = option_tag;
 }
 
-
-
+const nextBtn = document.querySelector(".next-btn");
+nextBtn.onclick = () => {
+  if (queCount < questions.length - 1) {
+    queCount++;
+    showQues(queCount);
+  } else {
+    console.log("questions completed");
+  }
+};
