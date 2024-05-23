@@ -5,8 +5,11 @@ const contBtn = document.querySelector(".cont");
 const quizBox = document.querySelector(".quiz-box");
 const resultBox = document.querySelector(".result-box");
 const option_list = document.querySelector(".option-list");
+const timeCount = quizBox.querySelector(".timer .time-sec");
 let queCount = 0;
 let queNum = 1;
+let tCounter;
+let timeVal = 15;
 
 startBtn.onclick = () => {
   infoBox.classList.add("show");
@@ -21,6 +24,21 @@ contBtn.onclick = () => {
   quizBox.classList.add("show");
   showQues(queCount);
   queCounter(1);
+  startTimer(15);
+};
+
+const nextBtn = document.querySelector(".next-btn");
+nextBtn.onclick = () => {
+  if (queCount < questions.length - 1) {
+    queCount++;
+    queNum++;
+    showQues(queCount);
+    queCounter(queNum);
+    clearInterval(tCounter);
+    startTimer(timeVal);
+  } else {
+    console.log("questions completed");
+  }
 };
 
 resultBox.onclick = () => {
@@ -52,56 +70,41 @@ function showQues(index) {
 
   ques.innerHTML = ques_tag;
   option_list.innerHTML = option_tag;
-  const option=option_list.querySelectorAll('.option')
+  const option = option_list.querySelectorAll(".option");
   for (let i = 0; i < option.length; i++) {
-    option[i].setAttribute("onclick","optionSelected(this)")
-    
+    option[i].setAttribute("onclick", "optionSelected(this)");
   }
 }
 
-let tickIcon='<div class="icon tick"><i class="fas fa-check"></i></div>'
-let crossIcon='<div class="icon cross"><i class="fas fa-times"></i></div>'
+let tickIcon = '<div class="icon tick"><i class="fas fa-check"></i></div>';
+let crossIcon = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 
-
-function optionSelected(answer){
-  let userAns=answer.textContent
- let corrAns=questions[queCount].answer
- let allOptions=option_list.children.length
- if(userAns==corrAns){
-  answer.classList.add("right")
-answer.insertAdjacentHTML("beforeend",tickIcon)
- }
-else{
-answer.classList.add("wrong")
-answer.insertAdjacentHTML("beforeend",crossIcon)
-
-
-
-for (let i = 0; i < allOptions; i++) {
-  if(option_list.children[i].textContent==corrAns){
-    option_list.children[i].setAttribute("class","option right")
-    option_list.children[i].insertAdjacentHTML("beforeend",tickIcon)
-}
-}
-}
-
-
-for (let i = 0; i < allOptions; i++) {
-  option_list.children[i].classList.add("disabled")
-}
-}
-
-const nextBtn = document.querySelector(".next-btn");
-nextBtn.onclick = () => {
-  if (queCount < questions.length - 1) {
-    queCount++;
-    queNum++;
-    showQues(queCount);
-    queCounter(queNum);
+function optionSelected(answer) {
+  clearInterval(tCounter);
+  let userAns = answer.textContent;
+  let corrAns = questions[queCount].answer;
+  let allOptions = option_list.children.length;
+  if (userAns == corrAns) {
+    answer.classList.add("right");
+    answer.insertAdjacentHTML("beforeend", tickIcon);
   } else {
-    console.log("questions completed");
+    answer.classList.add("wrong");
+    answer.insertAdjacentHTML("beforeend", crossIcon);
+
+    for (let i = 0; i < allOptions; i++) {
+      if (option_list.children[i].textContent == corrAns) {
+        option_list.children[i].setAttribute("class", "option right");
+        option_list.children[i].insertAdjacentHTML("beforeend", tickIcon);
+      }
+    }
   }
-};
+
+  for (let i = 0; i < allOptions; i++) {
+    option_list.children[i].classList.add("disabled");
+  }
+}
+
+
 
 function queCounter(index) {
   const quesCounterText = quizBox.querySelector(".total-ques");
@@ -114,4 +117,19 @@ function queCounter(index) {
   quesCounterText.innerHTML = TotQuesCount_tag;
 }
 
-  
+function startTimer(time) {
+  tCounter= setInterval(timer, 1000);
+  function timer() {
+    timeCount.textContent = time;
+    time--;
+    if (time < 9) {
+      let addZero = timeCount.textContent;
+      timeCount.textContent = "0" + addZero;
+    }
+
+    if (time < 0) {
+      clearInterval(tCounter);
+      timeCount.textContent = "00";
+    }
+  }
+}

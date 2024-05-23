@@ -120,6 +120,7 @@ body {
   align-items: center;
   justify-content: space-between;
   box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .quiz-box header .title {
@@ -151,6 +152,17 @@ body {
   font-size: 18px;
   border-radius: 5px;
   color: white;
+  width: 35px;
+  text-align: center;
+}
+
+.quiz-box header .time-line{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 4px;
+  width: 50%;
+  background: #112b53;
 }
 
 .quiz-box section .ques {
