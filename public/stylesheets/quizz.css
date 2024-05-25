@@ -36,7 +36,9 @@ body {
   transition: all 0.3s ease;
 }
 
-.info-box.show {
+.info-box.show,
+.quiz-box.show,
+.result-box.show{
   display: block;
 }
 
@@ -109,9 +111,6 @@ body {
   position: relative;
 }
 
-.quiz-box.show {
-  display: block;
-}
 
 .quiz-box header {
   height: 100px;
@@ -161,7 +160,7 @@ body {
   bottom: 0px;
   left: 0px;
   height: 4px;
-  width: 50%;
+width: 0;
   background: #112b53;
 }
 
@@ -268,6 +267,7 @@ footer .total-ques span p:first-child {
 }
 
 footer .next-btn {
+  display: none;
   height: 40px;
   padding: 0 13px;
   font-size: 18px;
@@ -284,8 +284,8 @@ footer .next-btn:hover {
 
 .result-box {
   background: #ffff;
-  width: 445px;
-  height: 400px;
+  width: 420px;
+  height: 380px;
   padding: 25px 30px;
   border-radius: 5px;
   display: flex;
@@ -298,7 +298,6 @@ footer .next-btn:hover {
   right: 30%;
   display: none;
   transform: translate(-20%, -20%) scale(0.9);
-    pointer-events: none;
 }
 
 .result-box .icon {
@@ -314,6 +313,7 @@ font-weight: 700;
 
 .result-box .score span {
 display: flex;
+justify-content: center;
 margin: 10px 0;
 font-size: 20px;
 font-weight: 500;
@@ -326,7 +326,8 @@ font-weight: 500;
 
 .result-box .buttons{
   display: flex;
-  margin: 20px 0;
+  justify-content: center;
+  margin: 30px 0;
 }
 
 .result-box .buttons button{
@@ -341,7 +342,6 @@ font-weight: 500;
   border: 1px solid #112b53 ;
   cursor: pointer;
   transition: all 0.3s ease;
-  
 }
 
 

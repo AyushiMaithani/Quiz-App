@@ -4,12 +4,18 @@ const exitBtn = document.querySelector(".quit");
 const contBtn = document.querySelector(".cont");
 const quizBox = document.querySelector(".quiz-box");
 const resultBox = document.querySelector(".result-box");
+const restartBtn = document.querySelector(".buttons .cont");
+const quitBtn = document.querySelector(".buttons .quit");
 const option_list = document.querySelector(".option-list");
 const timeCount = quizBox.querySelector(".timer .time-sec");
+const timeLine = quizBox.querySelector(".timer .time-line");
+
 let queCount = 0;
 let queNum = 1;
 let tCounter;
+let tCounterLine;
 let timeVal = 15;
+let widthVal = 0;
 
 startBtn.onclick = () => {
   infoBox.classList.add("show");
@@ -25,6 +31,7 @@ contBtn.onclick = () => {
   showQues(queCount);
   queCounter(1);
   startTimer(15);
+  startTimerLine(0);
 };
 
 const nextBtn = document.querySelector(".next-btn");
@@ -36,7 +43,11 @@ nextBtn.onclick = () => {
     queCounter(queNum);
     clearInterval(tCounter);
     startTimer(timeVal);
+    clearInterval(tCounterLine);
+    startTimerLine(widthVal);
+    nextBtn.style.display = "none";
   } else {
+    showResultBox();
     console.log("questions completed");
   }
 };
@@ -81,6 +92,7 @@ let crossIcon = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 
 function optionSelected(answer) {
   clearInterval(tCounter);
+  clearInterval(tCounterLine);
   let userAns = answer.textContent;
   let corrAns = questions[queCount].answer;
   let allOptions = option_list.children.length;
@@ -102,9 +114,8 @@ function optionSelected(answer) {
   for (let i = 0; i < allOptions; i++) {
     option_list.children[i].classList.add("disabled");
   }
+  nextBtn.style.display = "block";
 }
-
-
 
 function queCounter(index) {
   const quesCounterText = quizBox.querySelector(".total-ques");
@@ -118,7 +129,7 @@ function queCounter(index) {
 }
 
 function startTimer(time) {
-  tCounter= setInterval(timer, 1000);
+  tCounter = setInterval(timer, 1000);
   function timer() {
     timeCount.textContent = time;
     time--;
@@ -132,4 +143,20 @@ function startTimer(time) {
       timeCount.textContent = "00";
     }
   }
+}
+
+function startTimerLine(time) {
+  tCounterLine = setInterval(timer, 13);
+  function timer() {
+    time += 1;
+    timeLine.style.width = time + "px";
+    if (time > 1228) {
+      clearInterval(tCounterLine);
+    }
+  }
+}
+
+function showResultBox() {
+  quizBox.classList.remove("show");
+  resultBox.classList.add("show");
 }
