@@ -4,13 +4,11 @@ const plm = require("passport-local-mongoose");
 mongoose.connect("mongodb://127.0.0.1:27017/userinfo");
 
 const userSchema = new mongoose.Schema({
-
-  fullname:{
+  fullname: {
     type: String,
     required: true,
     unique: true,
-  }
-,
+  },
   username: {
     type: String,
     required: true,
@@ -24,8 +22,14 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
   },
-
- 
+  highscore: {
+    type: Number,
+    default: 0,
+  },
+  lastscore: {
+    type: Number,
+    default: 0,
+  },
 });
 
 userSchema.plugin(plm);
