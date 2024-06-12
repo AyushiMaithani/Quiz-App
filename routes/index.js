@@ -40,10 +40,7 @@ router.post("/",async function (req, res) {
     email: req.body.email,
   });
 
-  if (!(userData.fullname)) {
-    req.flash("error", "Fullname cannot be empty.");
-    return res.redirect("/");
-  }
+  
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(userData.email)) {
     req.flash("error", "Please provide a valid email address.");
