@@ -12,6 +12,9 @@ const restartBtn = resultBox.querySelector(".buttons .cont");
 const quitBtn = resultBox.querySelector(".buttons .quit");
 const quitQuizBtn = quizBox.querySelector("footer .buttons .quit-btn");
 const option_list = document.querySelector(".option-list");
+const confirmBox = quizBox.querySelector(".confirm-box");
+const returnBtn=confirmBox.querySelector(".buttons .return")
+const playBtn=confirmBox.querySelector(".buttons .play")
 const timeCount = quizBox.querySelector(".timer .time-sec");
 const timeLine = quizBox.querySelector(".timer .time-line");
 const timeUp = quizBox.querySelector(".timer .time-text");
@@ -35,6 +38,9 @@ fetch("https://opentdb.com/api_category.php")
     console.error("Error fetching categories:", error);
   });
 
+  let remainingTime; // Variable to store remaining time
+  let remainingWidth; // Variable to store remaining width of timer line
+  let answerSelected = false;
 let queCount = 0;
 let queNum = 1;
 let tCounter;
@@ -71,8 +77,25 @@ quitBtn.onclick = () => {
   window.location.reload();
 };
 
-quitQuizBtn.onclick = () => {
+returnBtn.onclick = () => {
   window.location.reload();
+};
+
+quitQuizBtn.onclick = () => {
+  remainingTime = timeVal - parseInt(timeCount.textContent); // Calculate remaining time
+  remainingWidth = parseInt(timeLine.style.width);
+  clearInterval(tCounter); // Stop the main timer
+  clearInterval(tCounterLine); // Stop the timer line
+  confirmBox.classList.add("show");
+};
+
+playBtn.onclick = () => {
+  console.log(answerSelected)
+  if (!answerSelected) { // Check if an answer is selected
+    startTimer(15 - remainingTime); // Restart the main timer with remaining time
+    startTimerLine(remainingWidth); // Restart the timer line with remaining width
+  }
+  confirmBox.classList.remove("show");
 };
 
 startBtn.onclick = () => {
@@ -101,6 +124,7 @@ exitBtn.onclick = () => {
 };
 
 contBtn.onclick = () => {
+  nextBtn.style.display = "none";
   infoBox.classList.remove("show");
   quizBox.classList.add("show");
   showQues(queCount);
@@ -112,6 +136,7 @@ contBtn.onclick = () => {
 const nextBtn = document.querySelector(".next-btn");
 nextBtn.onclick = () => {
   if (queCount < questions.length - 1) {
+    answerSelected = false;
     queCount++;
     queNum++;
     showQues(queCount);
@@ -161,10 +186,10 @@ function updateApiUrl() {
             answer: decodeHTMLEntities(question.correct_answer),
           }));
           console.log(questions);
-          
+
           contBtnPre.classList.add("show");
         } else {
-          console.log(selectedQuesNum)
+          console.log(selectedQuesNum);
           console.error("Failed to fetch questions from the API");
         }
       })
@@ -216,6 +241,7 @@ let crossIcon = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 // Define point values for each difficulty level
 
 function optionSelected(answer) {
+  answerSelected = true;
   clearInterval(tCounter);
   clearInterval(tCounterLine);
   let userAns = answer.textContent;
@@ -298,7 +324,7 @@ function startTimer(time) {
 }
 
 function startTimerLine(time) {
-  tCounterLine = setInterval(timer, 13);
+  tCounterLine = setInterval(timer, 12);
   function timer() {
     time += 1;
     timeLine.style.width = time + "px";

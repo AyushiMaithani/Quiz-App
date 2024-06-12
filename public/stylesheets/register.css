@@ -86,3 +86,28 @@ input {
   font-size: 0.875em;
   color: var(--text-color);
 }
+
+.error {
+  font-weight: 500;
+  color: red;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+
+.input-container input:focus {
+  outline: 0;
+}
+
+.input-container.success input {
+  border-color: #09c372;
+}
+
+.input-container.error input {
+  border-color: #ff3860;
+}
+
+.input-container .error {
+  color: #ff3860;
+  font-size: 4px;
+  height: 13px;
+}

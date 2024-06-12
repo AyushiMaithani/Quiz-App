@@ -8,11 +8,11 @@ passport.use(new localStrategy(userModel.authenticate()));
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("index");
+  res.render("index",{ error: req.flash("error") });
 });
 
 router.get("/login", function (req, res, next) {
-  res.render("login");
+  res.render('login', { error: req.flash("error") });
 });
 
 // Add this route to index.js
@@ -33,25 +33,34 @@ router.get("/profile", isLoggedIn, async function (req, res, next) {
   res.render("profile", { user });
 });
 
-router.post("/register", function (req, res) {
+router.post("/",async function (req, res) {
   const userData = new userModel({
     fullname: req.body.fullname,
     username: req.body.username,
     email: req.body.email,
   });
 
+  const existingUser = await userModel.findOne({ username: userData.username });
+  if (existingUser) {
+    req.flash("error", "Username already exists. Please choose a different one.");
+    return res.redirect("/"); 
+  }
+  else{
   userModel.register(userData, req.body.password).then(function () {
     passport.authenticate("local")(req, res, function () {
       res.redirect("/profile");
     });
   });
+}
 });
+
 
 router.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/profile",
-    failureRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true,
   }),
   function (req, res) {}
 );
@@ -67,7 +76,7 @@ router.get("/logout", function (req, res) {
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
-  res.redirect("/");
+  res.redirect("/login");
 }
 
 router.post("/profile", isLoggedIn, async (req, res) => {
@@ -101,6 +110,5 @@ router.post("/profile", isLoggedIn, async (req, res) => {
     res.status(500).json({ error: "Error updating scores" });
   }
 });
-
 
 module.exports = router;

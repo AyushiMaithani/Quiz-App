@@ -28,13 +28,12 @@ body {
 .user-profile {
   border: 2px solid white;
   width: 50%;
-  height: 50%;
   gap: 12px;
   border-radius: 5px;
   color: white;
   font-size: 50px;
   font-family: Georgia, "Times New Roman", Times, serif;
-  padding: 15px;
+  padding: 35px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -65,7 +64,8 @@ body {
   display: none;
 }
 
-.info-box,.info-box-pre {
+.info-box,
+.info-box-pre {
   background: rgb(235, 228, 228);
   width: 540px;
   border-radius: 5px;
@@ -84,9 +84,7 @@ body {
 }
 
 .info-box .info-title,
-.info-box-pre .info-title
- {
-  height: 60px;
+.info-box-pre .info-title {
   width: 100%;
   border-bottom: 1px solid gray;
   font-weight: 800;
@@ -94,7 +92,8 @@ body {
   padding: 20px;
 }
 
-.info-box .info-list,.info-box-pre .info-list {
+.info-box .info-list,
+.info-box-pre .info-list {
   padding: 15px;
   border-bottom: 1px solid gray;
   font-size: 18px;
@@ -132,14 +131,14 @@ body {
   cursor: pointer;
 }
 
-.info-box-pre .info .select{
+.info-box-pre .info .select {
   padding: 10px;
   margin: 4px;
   border-radius: 10px;
-    width: 96%;
-    text-align: left;
-    font-weight: 600;
-    border: 1px solid #ccc; /* Adding border for better visibility */
+  width: 96%;
+  text-align: left;
+  font-weight: 600;
+  border: 1px solid #ccc; /* Adding border for better visibility */
   background-color: #f7f7f7;
 }
 
@@ -148,7 +147,6 @@ body {
   background-color: #fff; /* Background color for options */
   color: #333; /* Text color for options */
 }
-
 
 .buttons button.quit,
 footer .buttons button.quit-btn {
@@ -177,18 +175,17 @@ footer .buttons button.next-btn:hover {
   background: #0f346ae1;
 }
 
-.info-box-pre .buttons button.cont{
+.info-box-pre .buttons button.cont {
   display: none;
 }
 
-.info-box-pre .buttons button.cont.show{
+.info-box-pre .buttons button.cont.show {
   display: block;
 }
 
 .quiz-box {
   background: rgb(235, 228, 228);
   width: 80%;
-  height: 660px;
   max-height: 730px;
   border-radius: 5px;
   display: none;
@@ -321,7 +318,8 @@ section .option-list .option:hover {
 }
 
 footer {
-  margin-top: 28px;
+  margin-top: 20px;
+  margin-bottom: 8px;
   height: 60px;
   width: 100%;
   display: flex;
@@ -348,6 +346,56 @@ footer .total-ques span p:first-child {
 
 footer .buttons {
   display: flex;
+}
+
+.confirm-box {
+  visibility: hidden;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm-box h1 {
+  font-size: 40px;
+}
+
+.confirm-box p {
+  font-size: 18px;
+}
+.confirm-box.show {
+  visibility: visible;
+}
+.buttons button {
+  gap: 12px;
+  margin-top: 12px;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.buttons button.return {
+  background-color: red;
+  margin-right: 30px;
+  font-size: 18px;
+}
+
+.buttons button.return:hover {
+  background-color: rgb(220 0 0);
+}
+
+.buttons button.play:hover {
+  background-color: rgb(19 136 19);
+}
+.buttons button.play {
+  background-color: green;
+  font-size: 18px;
 }
 
 .result-box {
@@ -441,74 +489,6 @@ td {
   border: 2px solid white;
   color: white;
   font-size: 32px;
-
   padding: 8px;
 }
 
-/* General utility classes */
-.flex-center {
-  align-items: center;
-  justify-content: center;
-}
-
-.flex-column {
-  flex-direction: column;
-}
-
-.glass {
-  z-index: 99;
-  height: 90vh;
-  width: 80vw;
-  background-color: rgba(255, 255, 255, 0.2);
-  -webkit-backdrop-filter: blur(15px);
-  backdrop-filter: blur(15px);
-  position: absolute;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  border-radius: 2rem;
-  -webkit-box-shadow: 10px 10px 20px var(--clr-box-shadow);
-  box-shadow: 10px 10px 20px var(--clr-box-shadow);
-}
-
-.text-center {
-  text-align: center;
-}
-
-.hidden {
-  display: none;
-}
-
-/* Specific styles for exit quiz container */
-#exit-quiz-container-jsRef {
-  z-index: 101;
-}
-
-.exit-game-button {
-  margin-top: 4rem;
-  background-color: var(--clr-primary-Red);
-  color: white;
-}
-
-.continue-game-button {
-  margin-top: 2rem;
-  background-color: var(--clr-primary-Green);
-}
-
-/* Button styles */
-.btn {
-  font-size: 1.8rem;
-  padding: 1rem 0;
-  width: 60vw;
-  max-width: 30rem;
-  text-align: center;
-  border: 0.1rem solid var(--clr-primary-300);
-  background-color: var(--clr-button-background);
-  color: var(--clr-primary-000);
-  margin-top: 1rem;
-  text-decoration: none;
-  border-radius: 2rem;
-  outline: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-}

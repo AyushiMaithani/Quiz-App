@@ -31,33 +31,41 @@
     </div>
     <div class="info-box-pre">
       <div class="info-title">
-        <span>Please select a difficulty level and category before proceeding</span>
+        <span
+          >Please select a difficulty level and category before proceeding</span
+        >
       </div>
       <div class="info-list">
         <div class="info">
           <div>Number Of Questions</div>
-           <div><select class="select num">
-            <option value="" disabled selected>Select</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            </select></div>
+          <div>
+            <select class="select num">
+              <option value="" disabled selected>Select</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
           </div>
-        <div class="info">
-        <div> Difficulty</div>
-         <div><select class="select diff">
-          <option value="" disabled selected>Select Difficulty</option>
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-          </select></div>
         </div>
         <div class="info">
-        <div>Category</div>
-      <div> <select class="select cat">
-        <option value="" disabled selected>Select Category</option>
-          </select></div> 
+          <div>Difficulty</div>
+          <div>
+            <select class="select diff">
+              <option value="" disabled selected>Select Difficulty</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+        </div>
+        <div class="info">
+          <div>Category</div>
+          <div>
+            <select class="select cat">
+              <option value="" disabled selected>Select Category</option>
+            </select>
+          </div>
         </div>
       </div>
       <div class="buttons">
@@ -97,6 +105,23 @@
       </div>
     </div>
     <div class="quiz-box">
+      <div class="confirm-box">
+        <h1>Are you sure you would like to exit the quiz?</h1>
+        <p>
+          Your game progress will be lost and you will be returned to the home
+          screen
+        </p>
+        <div class="buttons">
+        <button class="return">
+          Return home
+        </button>
+        <button
+        class="play"
+        >
+          Continue playing
+        </button>
+      </div>
+      </div>
       <header>
         <div class="title">Quizifyyyy</div>
         <div class="timer">
@@ -114,34 +139,17 @@
           <div class="option"></div>
         </div>
       </section>
-
       <footer>
         <div class="total-ques"></div>
-        <div
-          id="exit-quiz-container-jsRef"
-          class="flex-center flex-column glass text-center hidden"
-        >
-          <h1>Are you sure you would like to exit the quiz?</h1>
-          <p>
-            Your game progress will be lost and you will be returned to the home
-            screen
-          </p>
-          <button id="btn-exit-game-jsRef" class="btn exit-game-button">
-            Return home
-          </button>
-          <button
-            id="btn-continue-playing-jsRef"
-            class="btn continue-game-button"
-          >
-            Continue playing
-          </button>
-        </div>
         <div class="buttons">
           <button class="quit-btn">Quit Quiz</button>
           <button class="next-btn">Next Ques</button>
         </div>
       </footer>
+   
     </div>
+
+    
 
     <div class="result-box">
       <div class="icon">
