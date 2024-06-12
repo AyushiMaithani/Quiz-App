@@ -40,6 +40,23 @@ router.post("/",async function (req, res) {
     email: req.body.email,
   });
 
+  if (!(userData.fullname)) {
+    req.flash("error", "Fullname cannot be empty.");
+    return res.redirect("/");
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(userData.email)) {
+    req.flash("error", "Please provide a valid email address.");
+    return res.redirect("/");
+  }
+
+  if (!userData.username || (userData.username).length < 3) {
+    req.flash("error", "Username must be at least 3 characters long.");
+    return res.redirect("/");
+  }
+
+  
+
   const existingUser = await userModel.findOne({ username: userData.username });
   if (existingUser) {
     req.flash("error", "Username already exists. Please choose a different one.");
