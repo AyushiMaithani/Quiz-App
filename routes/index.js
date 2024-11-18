@@ -15,16 +15,20 @@ router.get("/login", function (req, res, next) {
   res.render('login', { error: req.flash("error") });
 });
 
-// Add this route to index.js
-router.get("/leaderboard", isLoggedIn, async function (req, res, next) {
+
+// Route to display the leaderboard
+router.get('/leaderboard', async (req, res) => {
   try {
-    const users = await userModel.find().sort({ score: -1 }).exec();
-    res.render("leaderboard", { users });
+    const users = await userModel.find({ highscore: { $gt: 0 } }).sort({ highscore: -1 }).limit(10);
+    
+    // Render the leaderboard EJS template and pass users data
+    res.render('leaderboard', { users });
   } catch (error) {
-    console.error("Error fetching leaderboard data:", error);
-    res.status(500).send("Error fetching leaderboard data");
+    console.error('Error fetching leaderboard:', error);
+    res.status(500).send('Internal Server Error');
   }
 });
+
 
 router.get("/profile", isLoggedIn, async function (req, res, next) {
   const user = await userModel.findOne({
