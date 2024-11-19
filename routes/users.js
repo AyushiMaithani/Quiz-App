@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 const plm = require("passport-local-mongoose");
 
-mongoose.connect("mongodb+srv://hellalitiu:ma6i1FMDMklCdwaS@cluster0.y62nv.mongodb.net/");
+require('dotenv').config();
+mongoose.connect(process.env.MONGO_DB_URL)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 const userSchema = new mongoose.Schema({
   fullname: {
